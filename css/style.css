@@ -1,0 +1,5 @@
+@import url(/css/styleguide.css);
+
+body {
+    background-color: var(--primary-600);
+}
