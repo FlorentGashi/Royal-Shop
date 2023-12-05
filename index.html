@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+    <!-- This is the Navbar Desktop -->
     <header>
         <a class="logo" href="/"><img src="assets/favicon.png" alt="logo"></a>
         <nav>
@@ -22,6 +24,8 @@
         <a class="cta" href="#">Login</a>
         <p class="menu cta">Menu</p>
     </header>
+
+     <!-- This is the Navbar in Mobile -->
     <div id="mobile__menu" class="overlay">
         <a class="close">&times;</a>
         <div class="overlay__content">
@@ -31,6 +35,88 @@
             <a class="cta-mobile" href="#">Login</a>
         </div>
     </div>
+
+
+    <!-- Slideshow Begins Here -->
+    <div class="slideshow-container">
+        <div class="slide">
+            <img src="https://unblast.com/wp-content/uploads/2020/04/Macbook-Pro-3D-Model-1.jpg" alt="Slide 1">
+            <div class="caption">
+                <h1>Welcome to Our Store</h1>
+                <p>Discover amazing products and enjoy exclusive offers.</p>
+                <a href="#" class="btn-shop">Shop Now</a>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="https://preview.free3d.com/img/2022/02/3190220002317829606/be362ft9.jpg" alt="Slide 2">
+            <div class="caption">
+                <h1>Welcome to Our Store</h1>
+                <p>Discover amazing products and enjoy exclusive offers.</p>
+                <a href="#" class="btn-shop">Shop Now</a>
+            </div>
+        </div>
+    </div>
+    <!-- Slideshow End's Here -->
+
+
+    <!-- Services  -->
+    <section class="services">
+    <div class="card">
+        <a class="card1" href="#">
+         <p>This is heading</p>
+         <p class="small">Card description with lots of great facts and interesting details.</p>
+         <div class="go-corner" href="#">
+           <div class="go-arrow">
+             →
+           </div>
+         </div>
+       </a>
+     </div>
+
+     <div class="card">
+        <a class="card1" href="#">
+         <p>This is heading</p>
+         <p class="small">Card description with lots of great facts and interesting details.</p>
+         <div class="go-corner" href="#">
+           <div class="go-arrow">
+             →
+           </div>
+         </div>
+       </a>
+     </div>
+
+     <div class="card">
+        <a class="card1" href="#">
+         <p>This is heading</p>
+         <p class="small">Card description with lots of great facts and interesting details.</p>
+         <div class="go-corner" href="#">
+           <div class="go-arrow">
+             →
+           </div>
+         </div>
+       </a>
+     </div>
+    </section>
+
+    <script>
+        let slideIndex = 0;
+      
+        function showSlides() {
+          let slides = document.getElementsByClassName("slide");
+          for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+          }
+          slideIndex++;
+          if (slideIndex > slides.length) {
+            slideIndex = 1;
+          }
+          slides[slideIndex - 1].style.display = "block";
+          setTimeout(showSlides, 3000); 
+        }
+      
+        showSlides();
+    </script>
     <script type="text/javascript" src="/js/mobile.js"></script>
 </body>
 </html>
