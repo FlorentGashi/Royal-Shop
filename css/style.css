@@ -342,7 +342,9 @@
     width: calc(50% - 20px); /* Show 2 products in a row with some gap in between */
   }
   .action-button{
-    font-size: 14px;
+    font-size: 10px;
+    margin: 0;
+    width: 45%;
     padding: 10px;
   }
 }
