@@ -336,6 +336,17 @@
 .action-button:hover {
   background-color: #1c1c1c;
 }
+
+@media screen and (max-width: 767px) {
+  .product {
+    width: calc(50% - 20px); /* Show 2 products in a row with some gap in between */
+  }
+  .action-button{
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
 /* Product End */
 
 /* Start of Services */
