@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal | Kyçu</title>
+    <title>Royal | Regjistrohu</title>
     <meta name="description" content="Mirësevini në Royal Shop, destinacioni tuaj i preferuar për blerje online të produkteve të teknologjisë. Gjeni pajisjet më të fundit dhe cilësore për të përmirësuar përvojën tuaj digjitale. Shfletoni koleksionin tonë dhe hapi dritën e inovacionit!">
     <meta name="keywords" content="Teknologji e fundit, Blerje online teknologjike, Paisje elektronike, Pajisje inteligjente, Shitje produkte teknologjike, Gadget inovative, Telefona inteligjentë, Laptopë cilësore, Aksesore teknologjike, Oferta teknologjike">
     <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
@@ -19,7 +19,7 @@
         </div>
     </div>
     
-
+    
     <header>
         <a class="logo" href="index.html"><img src="assets/favicon.png" alt="logo"></a>
         <nav>
@@ -46,20 +46,28 @@
 
     <!-- This is The Login Form -->
     <div class="form-container">
-        <h1 class="title">Kyçu</h1>
+        <h1 class="title">Regjistrohu</h1>
         <form class="form">
             <div class="input-group">
-                <label for="username">Sheno Emrin</label>
-                <input type="text" name="username" id="username" required>
+                <label for="name">Sheno Emrin</label>
+                <input type="text" name="name" id="name" required>
+            </div>
+            <div class="input-group">
+                <label for="surname">Sheno Mbiemrin</label>
+                <input type="text" name="surname" id="surname" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Sheno Email</label>
+                <input type="email" name="email" id="email" required>
             </div>
             <div class="input-group">
                 <label for="password">Sheno Paswordin</label>
                 <input type="password" name="password" id="password" required>
             </div>
-            <button class="sign">Kyçu</button>
+            <button class="sign">Regjistrohu</button>
         </form>
-        <p class="signup">Nuk keni ende nje Llogari?
-        <a rel="noopener noreferrer" href="signup.html" class="">Regjistrohu</a>
+        <p class="signup">Keni nje Llogari?
+        <a rel="noopener noreferrer" href="login.html" class="">Kyçu</a>
         </p>
     </div>
     <!--  Login Form End's Here -->
@@ -80,7 +88,7 @@
 			document.getElementById('loading').classList.add('hide');
 		});
 	</script>
-    
+
     <script type="text/javascript" src="/js/mobile.js"></script>
 </body>
 </html>
