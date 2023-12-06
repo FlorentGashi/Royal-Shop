@@ -556,3 +556,90 @@
 .card4:hover .go-arrow {
   opacity: 1;
 }
+
+
+/* Footer */
+
+.footer {
+  margin-top: 5rem;
+  position: relative;
+  width: 100%;
+  background: #24252a;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer-menu {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.menu__item {
+  list-style: none;
+}
+
+.menu__link {
+  font-size: 1rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
+
+.menu__link:hover {
+  color: #3482FF;
+}
+
+.footer p {
+  color: #fff;
+  margin: 15px 0 10px 0;
+  font-size: 1rem;
+  opacity: 0.75;
+  font-weight: 300;
+}
+
+
+/* Faqja 404 */
+
+.card-404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 65vh;
+}
+.card-404 h1 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.card-404 p {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3482FF;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #1c1c1c;
+}
