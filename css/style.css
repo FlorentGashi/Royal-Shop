@@ -101,6 +101,7 @@
     color: #3482FF;
   }
   
+  
   .cta {
     order: 3;
     margin-left: 20px;
@@ -110,9 +111,25 @@
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease 0s;
+    display: none;
   }
   
   .cta:hover {
+    background-color: #3482FF;
+  }
+  
+  .cta-button{
+    order: 3;
+    margin-left: 20px;
+    padding: 9px 25px;
+    background-color: #3482FF;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+  }
+
+  .cta-button:hover{
     background-color: #3482FF;
   }
   
