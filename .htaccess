@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Me e Hek .html n URL
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)\.html$ /$1 [L,R=301]
+
+# Nese nje faqe nuk Egziston me bo redirect tek faqja 404
+ErrorDocument 404 /404.html
