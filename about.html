@@ -10,6 +10,57 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Here is The Loader so The Page Doesn't show up till the content is Loaded -->
+    <div class="center-body" id="loading">
+        <div class="loader-circle-86">
+            <svg version="1.1" x="0" y="0" viewbox="-10 -10 120 120" enable-background="new 0 0 200 200" xml:space="preserve">
+           <path class="circle" d="M0,50 A50,50,0 1 1 100,50 A50,50,0 1 1 0,50"/>
+            </svg>
+        </div>
+    </div>
 
+        <!-- This is the Navbar Desktop -->
+        <header>
+            <a class="logo" href="index.html"><img src="assets/favicon.png" alt="logo"></a>
+            <nav>
+                <ul class="nav__links">
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+                <a class="cta" href="login.html">Login</a>
+            <p class="menu cta">Menu</p>
+        </header>
+    
+         <!-- This is the Navbar in Mobile -->
+        <div id="mobile__menu" class="overlay">
+            <a class="close">&times;</a>
+            <div class="overlay__content">
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a class="cta-mobile" href="login.html">Login</a>
+                <a class="cta-mobile" href="cart.html">Cart</a>
+            </div>
+        </div>
+
+        
+        <footer class="footer">
+            <ul class="footer-menu">
+              <li class="menu__item"><a class="menu__link" href="shop.html">Shop</a></li>
+              <li class="menu__item"><a class="menu__link" href="about.html">About</a></li>
+              <li class="menu__item"><a class="menu__link" href="contact.html">Contact</a></li>
+        
+            </ul>
+            <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Royal Shop | All Rights Reserved</p>
+        </footer>
+
+        <script>
+            window.addEventListener('load', function() {
+                document.getElementById('loading').classList.add('hide');
+            });
+        </script>
+        <script type="text/javascript" src="/js/mobile.js"></script>
 </body>
 </html>
