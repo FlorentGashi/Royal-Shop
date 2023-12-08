@@ -561,9 +561,6 @@
   background-color: rgb(55 65 81); /* Choose a darker shade for hover effect */
 }
 
-
-
-
 /* About Us Page */
 .about-us {
   padding: 50px 50px;
@@ -605,5 +602,14 @@
   height: auto;
   border-radius: 8px;
   object-fit: cover;
+}
+
+@media (max-width: 900px){
+.row {
+    flex-direction: column;
+}
+.about-col video{
+  margin-top: 20px;
+}
 }
 /* About Us End*/
