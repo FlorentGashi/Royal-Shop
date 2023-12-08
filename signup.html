@@ -19,7 +19,6 @@
         </div>
     </div>
     
-    
     <header>
         <a class="logo" href="index.html"><img src="assets/favicon.png" alt="logo"></a>
         <nav>
@@ -47,22 +46,26 @@
     <!-- This is The Login Form -->
     <div class="form-container">
         <h1 class="title">Regjistrohu</h1>
-        <form class="form">
+        <form class="form" onsubmit="return validateForm()">
             <div class="input-group">
                 <label for="name">Sheno Emrin</label>
                 <input type="text" name="name" id="name" required>
+                <p id="nameError" class="error"></p>
             </div>
             <div class="input-group">
                 <label for="surname">Sheno Mbiemrin</label>
                 <input type="text" name="surname" id="surname" required>
+                <p id="surnameError" class="error"></p>
             </div>
             <div class="input-group">
                 <label for="email">Sheno Email</label>
                 <input type="email" name="email" id="email" required>
+                <p id="emailError" class="error"></p>
             </div>
             <div class="input-group">
                 <label for="password">Sheno Paswordin</label>
                 <input type="password" name="password" id="password" required>
+                <p id="passwordError" class="error"></p>
             </div>
             <button class="sign">Regjistrohu</button>
         </form>
@@ -83,11 +86,57 @@
         <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Royal Shop | All Rights Reserved</p>
     </footer>
 
+    <!-- Form Validation Here -->
     <script>
-		window.addEventListener('load', function() {
-			document.getElementById('loading').classList.add('hide');
-		});
-	</script>
+        let nameRegex = /^[A-Z][a-z]{1,14}$/;
+        let surnameRegex = /^[A-Z][a-z]{1,14}$/;
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let passwordRegex = /^[A-Z].*\d{3}$/;
+    
+        function validateForm() {
+            let nameInput = document.getElementById('name');
+            let nameError = document.getElementById('nameError');
+            let surnameInput = document.getElementById('surname');
+            let surnameError = document.getElementById('surnameError');
+            let emailInput = document.getElementById('email');
+            let emailError = document.getElementById('emailError');
+            let passwordInput = document.getElementById('password');
+            let passwordError = document.getElementById('passwordError');
+    
+            nameError.innerText = '';
+            surnameError.innerText = '';
+            emailError.innerText = '';
+            passwordError.innerText = '';
+    
+            if (!nameRegex.test(nameInput.value)) {
+                nameError.innerText = 'Emri duhet të fillojë me shkronjë të madhe dhe të ketë gjatësi nga 2 deri në 15 karaktere.';
+                return false;
+            }
+    
+            if (!surnameRegex.test(surnameInput.value)) {
+                surnameError.innerText = 'Mbiemri duhet të fillojë me shkronjë të madhe dhe të ketë gjatësi nga 2 deri në 15 karaktere.';
+                return false;
+            }
+    
+            if (!emailRegex.test(emailInput.value)) {
+                emailError.innerText = 'Adresa e email-it nuk është e vlefshme.';
+                return false;
+            }
+    
+            if (!passwordRegex.test(passwordInput.value)) {
+                passwordError.innerText = 'Fjalëkalimi duhet të fillojë me shkronjë të madhe dhe të përmbajë të paktën 3 numra.';
+                return false;
+            }
+    
+            return true;
+        }
+    </script>
+
+    <script>
+        window.addEventListener('load', function() {
+            document.getElementById('loading').classList.add('hide');
+        });
+    </script>
 
     <script type="text/javascript" src="/js/mobile.js"></script>
 </body>

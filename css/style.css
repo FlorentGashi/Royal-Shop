@@ -640,6 +640,7 @@
 }
 .feature-img img{
   width: 80%;
+  height: auto;
 }
 .small-img-row{
   display: flex;
