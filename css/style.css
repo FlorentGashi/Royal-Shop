@@ -280,7 +280,7 @@
   padding: 40px 0;
 }
 
-.section-title {
+.section-title, .section-title-1 {
   font-size: 2rem;
   margin-bottom: 20px;
 }
