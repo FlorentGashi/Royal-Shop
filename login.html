@@ -47,17 +47,20 @@
     <!-- This is The Login Form -->
     <div class="form-container">
         <h1 class="title">Kyçu</h1>
-        <form class="form">
+        <form class="form" onsubmit="return validateForm()">
             <div class="input-group">
                 <label for="username">Sheno Emrin</label>
                 <input type="text" name="username" id="username" required>
+                <p id="usernameError" class="error"></p>
             </div>
             <div class="input-group">
                 <label for="password">Sheno Paswordin</label>
                 <input type="password" name="password" id="password" required>
+                <p id="passwordError" class="error"></p>
             </div>
             <button class="sign">Kyçu</button>
         </form>
+        <p id="successMessage" class="success"></p>
         <p class="signup">Nuk keni ende nje Llogari?
         <a rel="noopener noreferrer" href="signup.html" class="">Regjistrohu</a>
         </p>
@@ -73,7 +76,38 @@
     
         </ul>
         <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Royal Shop | All Rights Reserved</p>
-    </footer>
+    </footer> 
+
+
+    <!-- Form Validation Here -->
+    <script>
+        let usernameRegex = /^[A-Za-z]{8,15}$/;
+        let passwordRegex = /^[A-Z].*\d{3}$/;
+    
+        function validateForm() {
+            let usernameInput = document.getElementById('username');
+            let usernameError = document.getElementById('usernameError');
+            let passwordInput = document.getElementById('password');
+            let passwordError = document.getElementById('passwordError');
+            let successMessage = document.getElementById('successMessage');
+    
+            usernameError.innerText = '';
+            passwordError.innerText = '';
+    
+            if (!usernameRegex.test(usernameInput.value)) {
+                usernameError.innerText = 'Emri i Përdoruesit duhet të jetë nga 8 deri në 15 karaktere dhe të përmbajë vetëm shkronja.';
+                return false;
+            }
+    
+            if (!passwordRegex.test(passwordInput.value)) {
+                passwordError.innerText = 'Fjalëkalimi duhet të fillojë me shkronjë të madhe dhe të përmbajë të paktën 3 numra.';
+                return false;
+            }
+    
+            successMessage.innerText = 'Forma u plotësua me sukses!';
+            return true;
+        }
+    </script>
 
     <script>
 		window.addEventListener('load', function() {

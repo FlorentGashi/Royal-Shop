@@ -224,6 +224,12 @@ header {
     font-weight: 700;
 }
 
+.error{
+  margin-top: 10px;
+  color: red;
+  padding-bottom: 15px;
+}
+
 .form {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
@@ -351,4 +357,3 @@ header {
     opacity: 0.75;
     font-weight: 300;
   }
-  
