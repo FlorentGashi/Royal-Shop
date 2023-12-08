@@ -45,6 +45,29 @@
         </div>
     </div>
 
+    <section class="product-preview-container">
+        <div class="row">
+            <div class="product-col">
+                <h1 class="product-h1">Royal Shop</h1>
+                <p>
+                    Royal Shop është një dyqan online i specializuar në produkte
+                    teknologjike dhe inovative. Ne ofrojmë një gamë të gjërë të
+                    produkteve me cilësi të lartë dhe çmime të përballueshme.
+                  </p>
+                  <p>
+                    Jemi të përkushtuar për të ofruar shërbim të shkëlqyer ndaj
+                    klientëve tanë. Vizioni ynë është të sigurojmë një eksperiencë
+                    blerjeje të paharrueshme për të gjithë klientët tanë.
+                  </p>
+                  <p>
+                    Nëse keni pyetje ose shqetësime, mos ngurroni të na kontaktoni. Ju
+                    faleminderit për besimin tuaj në Royal Shop!
+                  </p>
+                  <br />
+                  <a href="cart.html" class="accept-btn">Shto në Shport</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer Section Starts Here -->
     <footer class="footer">
@@ -56,6 +79,16 @@
         </ul>
         <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Royal Shop | All Rights Reserved</p>
     </footer>
+    <!-- This is JS code is to change Product Images-->
+    <script>
+        var productImg = document.getElementById("productImg");
+        var smallImages = document.getElementsByClassName("small-img");
+    
+        function changeImage(imageSrc) {
+          productImg.src = imageSrc;
+        }
+    </script>
+
     <script>
 		window.addEventListener('load', function() {
 			document.getElementById('loading').classList.add('hide');

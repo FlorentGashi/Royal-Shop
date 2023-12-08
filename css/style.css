@@ -612,3 +612,22 @@
 }
 }
 /* About Us End*/
+
+/* Product Preview Page */
+.product-preview-container{
+  padding: 50px 50px;
+  background-color: #f4f4f4;
+}
+.product-col{
+  flex: 1;
+  max-width: 100%;
+  text-align: left;
+}
+.product-col p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+.product-h1{
+  color: #333;
+}
