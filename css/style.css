@@ -411,6 +411,7 @@
 }
 
 .accept-btn {
+  text-decoration: none;
   cursor: pointer;
   margin-top: 20px;
   font-size: 0.95rem;
