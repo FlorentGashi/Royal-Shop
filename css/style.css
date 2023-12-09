@@ -603,6 +603,42 @@
   object-fit: cover;
 }
 
+.interesting-facts {
+  margin-top: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+}
+
+.interesting-facts h2 {
+  color: #24252a;
+}
+
+.interesting-facts p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+
+th {
+  background-color: #3498db;
+  color: white;
+}
+
 @media (max-width: 900px){
 .row {
     flex-direction: column;
