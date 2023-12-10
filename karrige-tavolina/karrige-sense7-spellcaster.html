@@ -45,6 +45,48 @@
         </div>
     </div>
 
+    <!-- Product Star's Here -->
+    <section class="product-preview-container">
+        <div class="row">
+            <div class="product-col">
+                <h1 class="product-h1">Karrige SENSE7 Spellcaster</h1>
+                <p>
+                    Karrige SENSE7 Spellcaster është një mobilje e jashtëzakonshme e dizajnuar me kujdes për të përshtatur me saktësi me formën natyrale të shtyllës kurrizore. Ky produkt ofron një eksperiencë e padëgjuar në pozicionimin para kompjuterit, siguruar nga forma e saj e përshtatshme për lojëra ose punë.
+                  </p>
+                  <p><b>Specifikacionet:</b> <br>
+                    Kjo karrige ka një mbushje të shkumës me ajër me densitet optimal, garantuar për të ofruar një ndjesi të përshtatshme dhe një nivel rehatie gjatë përdorimit. Për të rritur edhe më tej komoditetin, Karrigia SENSE7 Spellcaster është e pajisur me teknologjinë FlowTech. Ky funksion inovativ lejon përdoruesin të rregullojë mbështetësen në diapazonin 90-170°, duke ofruar mundësinë për një personalizim të plotë të pozicionit.
+                  </p>
+                  <p> <b>Transporti:</b> <br>
+                    Produkti do të dërgohet brenda 24-48 orëve. Klikoni për detaje rreth transportit.
+                  </p>
+                  <p> <b>Kthimi:</b> <br>
+                    Nëse nuk jeni të kënaqur me produktin, mund të kërkojë kthim ose ndërrim brenda 7 ditëve.
+                  </p>
+                  <br />
+                  <a href="cart.html" class="accept-btn">Shto në Shport</a>
+            </div>
+            <div class="product-col">
+                <div class="feature-img">
+                    <img src="/assets/Karrige SENSE7 Spellcaster.png" id="productImg" alt="Karrige SENSE7 Spellcaster">
+                </div>
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                      <img src="/assets/Karrige SENSE7 Spellcaster.png" width="100%" class="small-img" onclick="changeImage('/assets/Karrige SENSE7 Spellcaster.png')">
+                    </div>
+                    <div class="small-img-col">
+                      <img src="/assets/Karrige SENSE7 Spellcaster 2.png" width="100%" class="small-img" onclick="changeImage('/assets/Karrige SENSE7 Spellcaster 2.png')">
+                    </div>
+                    <div class="small-img-col">
+                      <img src="/assets/Karrige SENSE7 Spellcaster 3.png" width="100%" class="small-img" onclick="changeImage('/assets/Karrige SENSE7 Spellcaster 3.png')">
+                    </div>
+                    <div class="small-img-col">
+                      <img src="/assets/Karrige SENSE7 Spellcaster 4.png" width="100%" class="small-img" onclick="changeImage('/assets/Karrige SENSE7 Spellcaster 4.png')">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Ends Here -->
 
     <!-- Footer Section Starts Here -->
     <footer class="footer">
@@ -56,6 +98,15 @@
         </ul>
         <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Royal Shop | All Rights Reserved</p>
     </footer>
+    <!-- This is JS code is to change Product Images-->
+    <script>
+        var productImg = document.getElementById("productImg");
+        var smallImages = document.getElementsByClassName("small-img");
+    
+        function changeImage(imageSrc) {
+          productImg.src = imageSrc;
+        }
+    </script>
     <script>
 		window.addEventListener('load', function() {
 			document.getElementById('loading').classList.add('hide');
