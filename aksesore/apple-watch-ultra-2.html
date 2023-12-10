@@ -45,6 +45,43 @@
         </div>
     </div>
 
+    <section class="product-preview-container">
+        <div class="row">
+            <div class="product-col">
+                <h1 class="product-h1">Apple Watch Ultra 2 Cellular</h1>
+                <p>
+                    Merrni avantazhet e epokës së re të teknologjisë duke përdorur orët e zgjuara Apple Watch Ultra 2. Ato janë të zgjuara, të qëndrueshme, dhe plot me funksione praktike që do t'ju ndihmojnë të monitoroni shëndetin tuaj, si dhe do t'ju mbajnë të lidhur lehtësisht me kolegët dhe të dashurit tuaj.
+                  </p>
+                  <p> <b>Transporti:</b> <br>
+                    Produkti do të dërgohet brenda 24-48 orëve. Klikoni për detaje rreth transportit.
+                  </p>
+                  <p> <b>Kthimi:</b> <br>
+                    Nëse nuk jeni të kënaqur me produktin, mund të kërkojë kthim ose ndërrim brenda 7 ditëve.
+                  </p>
+                  <br />
+                  <a href="cart.html" class="accept-btn">Shto në Shport</a>
+            </div>
+            <div class="product-col">
+                <div class="feature-img">
+                    <img src="/assets/Apple Watch Ultra 2 Cellular.jpeg" id="productImg" alt="Apple Watch Ultra 2 Cellular">
+                </div>
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                      <img src="/assets/Apple Watch Ultra 2 Cellular.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/Apple Watch Ultra 2 Cellular.jpeg')">
+                    </div>
+                    <div class="small-img-col">
+                      <img src="/assets/Apple Watch Ultra 2 Cellular 2.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/Apple Watch Ultra 2 Cellular 2.jpeg')">
+                    </div>
+                    <div class="small-img-col">
+                      <img src="/assets/Apple Watch Ultra 2 Cellular 3.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/Apple Watch Ultra 2 Cellular 3.jpeg')">
+                    </div>
+                    <div class="small-img-col">
+                      <img src="/assets/Apple Watch Ultra 2 Cellular 4.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/Apple Watch Ultra 2 Cellular 4.jpeg')">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer Section Starts Here -->
     <footer class="footer">
@@ -56,6 +93,15 @@
         </ul>
         <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Royal Shop | All Rights Reserved</p>
     </footer>
+    <!-- This is JS code is to change Product Images-->
+    <script>
+        var productImg = document.getElementById("productImg");
+        var smallImages = document.getElementsByClassName("small-img");
+    
+        function changeImage(imageSrc) {
+            productImg.src = imageSrc;
+        }
+    </script>
     <script>
 		window.addEventListener('load', function() {
 			document.getElementById('loading').classList.add('hide');

@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Shop | Kufje HyperX Cloud II</title>
+    <title>Royal Shop | Maus Zowie by BenQ</title>
     <meta name="description" content="Mirësevini në Royal Shop, destinacioni tuaj i preferuar për blerje online të produkteve të teknologjisë. Gjeni pajisjet më të fundit dhe cilësore për të përmirësuar përvojën tuaj digjitale. Shfletoni koleksionin tonë dhe hapi dritën e inovacionit!">
     <meta name="keywords" content="Teknologji e fundit, Blerje online teknologjike, Paisje elektronike, Pajisje inteligjente, Shitje produkte teknologjike, Gadget inovative, Telefona inteligjentë, Laptopë cilësore, Aksesore teknologjike, Oferta teknologjike">
     <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body style="background-color: #f4f4f4;">
      <!-- Here is The Loader so The Page Doesn't show up till the content is Loaded -->
      <div class="center-body" id="loading">
         <div class="loader-circle-86">
@@ -45,6 +45,43 @@
         </div>
     </div>
 
+    <section class="product-preview-container">
+        <div class="row">
+            <div class="product-col">
+                <h1 class="product-h1">Maus Zowie by BenQ EC1-B Divina</h1>
+                <p>
+                    Njihuni me BenQ EC1-B Divina, një maus lojrash i projektuar me saktësi dhe performancë në mendje. EC1-B Divina plotëson nevojat e lojtarëve konkurrues, duke ofruar një përzierje të përsosur të funksionalitetit dhe estetikës. I krijuar për rehati, dizajni ergonomik siguron një kontroll natyral, duke i lejuar lojtarët të përfshihen në seanca të zgjatura pa shqetësime. Sensori optik me performancë të lartë ofron saktësi dhe reagim të jashtëzakonshëm, duke përkthyer çdo lëvizje me saktësi në ekran.
+                  </p>
+                  <p> <b>Transporti:</b> <br>
+                    Produkti do të dërgohet brenda 24-48 orëve. Klikoni për detaje rreth transportit.
+                  </p>
+                  <p> <b>Kthimi:</b> <br>
+                    Nëse nuk jeni të kënaqur me produktin, mund të kërkojë kthim ose ndërrim brenda 7 ditëve.
+                  </p>
+                  <br />
+                  <a href="cart.html" class="accept-btn">Shto në Shport</a>
+            </div>
+            <div class="product-col">
+                <div class="feature-img">
+                    <img src="/assets/Maus Zowie by BenQ.jpeg" id="productImg" alt="Monitor AOC 24B2XH">
+                </div>
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                      <img src="/assets/Maus Zowie by BenQ.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/Maus Zowie by BenQ.jpeg')">
+                    </div>
+                    <div class="small-img-col">
+                      <img src="/assets/Maus Zowie by BenQ 2.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/Maus Zowie by BenQ 2.jpeg')">
+                    </div>
+                    <div class="small-img-col">
+                      <img src="/assets/Maus Zowie by BenQ 3.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/Maus Zowie by BenQ 3.jpeg')">
+                    </div>
+                    <div class="small-img-col">
+                      <img src="/assets/Maus Zowie by BenQ 4.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/Maus Zowie by BenQ 4.jpeg')">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer Section Starts Here -->
     <footer class="footer">
@@ -56,6 +93,16 @@
         </ul>
         <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Royal Shop | All Rights Reserved</p>
     </footer>
+    <!-- This is JS code is to change Product Images-->
+    <script>
+        var productImg = document.getElementById("productImg");
+        var smallImages = document.getElementsByClassName("small-img");
+    
+        function changeImage(imageSrc) {
+          productImg.src = imageSrc;
+        }
+    </script>
+
     <script>
 		window.addEventListener('load', function() {
 			document.getElementById('loading').classList.add('hide');

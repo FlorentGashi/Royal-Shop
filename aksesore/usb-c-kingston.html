@@ -45,6 +45,40 @@
         </div>
     </div>
 
+    <section class="product-preview-container">
+        <div class="row">
+            <div class="product-col">
+                <h1 class="product-h1">USB-C Kingston DataTraveler 70 - 64GB</h1>
+                <p>
+                    USB-C Kingston me një kapacitet 64GB përmban USB 3.2 Gen 1. Ofron poashtu funksion OTG (On-The-Go). Dimensionet e saj janë: 18,5 x 59 x 9 mm. Ndërfaqja e produktit është USB-C.
+                  </p>
+                  <p> <b>Transporti:</b> <br>
+                    Produkti do të dërgohet brenda 24-48 orëve. Klikoni për detaje rreth transportit.
+                  </p>
+                  <p> <b>Kthimi:</b> <br>
+                    Nëse nuk jeni të kënaqur me produktin, mund të kërkojë kthim ose ndërrim brenda 7 ditëve.
+                  </p>
+                  <br />
+                  <a href="cart.html" class="accept-btn">Shto në Shport</a>
+            </div>
+            <div class="product-col">
+                <div class="feature-img">
+                    <img src="/assets/USB-C Kingston DataTraveler 70.jpeg" id="productImg" alt="USB-C Kingston DataTraveler 70">
+                </div>
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                      <img src="/assets/USB-C Kingston DataTraveler 70.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/USB-C Kingston DataTraveler 70.jpeg')">
+                    </div>
+                    <div class="small-img-col">
+                      <img src="/assets/USB-C Kingston DataTraveler 70 2.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/USB-C Kingston DataTraveler 70 2.jpeg')">
+                    </div>
+                    <div class="small-img-col">
+                      <img src="/assets/USB-C Kingston DataTraveler 70 3.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/USB-C Kingston DataTraveler 70 3.jpeg')">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer Section Starts Here -->
     <footer class="footer">
@@ -56,6 +90,15 @@
         </ul>
         <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Royal Shop | All Rights Reserved</p>
     </footer>
+    <!-- This is JS code is to change Product Images-->
+    <script>
+        var productImg = document.getElementById("productImg");
+        var smallImages = document.getElementsByClassName("small-img");
+    
+        function changeImage(imageSrc) {
+            productImg.src = imageSrc;
+        }
+    </script>
     <script>
 		window.addEventListener('load', function() {
 			document.getElementById('loading').classList.add('hide');

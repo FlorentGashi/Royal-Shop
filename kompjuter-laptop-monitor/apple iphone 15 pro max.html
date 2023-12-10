@@ -50,13 +50,7 @@
             <div class="product-col">
                 <h1 class="product-h1">Apple iPhone 15 pro max</h1>
                 <p>
-                  IPhone 15 Pro Max janë smartphone të dizajnuar, zhvilluar dhe treguar nga Apple Inc. Ata janë pjesa kryesore e gjeneratës së shtatëmbëdhjetë
-                  </p>
-                  <p><b>Specifikacionet:</b> <br>
-                    <b>1.</b> Procesori i fuqishëm për performancë të lartë. <br>
-                    <b>2.</b> iPhone 15 Pro dhe iPhone 15 Pro Max përdorin USB-C me shpejtësi transferimi USB 3.2 Gen 2 (përgjithësisht deri në 10 Gbps / 1.25 GBps) <br>
-                    <b>3.</b> 
-                    Të gjitha modelet e iPhone 15 kanë mbështetje për modalitetin alternativ të DisplayPort mbi daljen e videos USB-C me rezolucion HDR deri në 4K <br>
+                  Një telefon i shkëlqyer me një përfundim tejet të qëndrueshëm, i cili ndodhet në një formë tejet të fortë, por lehtë të titanit. Në fakt, sipas prodhuesit, një nga roverët e Marsit përdor të njëjtën material titani. Kjo është saktësisht ajo që është Apple iPhone 15 Pro Max, i cili, përveç dizajnit të tij unik dhe cilësisë të jashtëzakonshme të prodhimit, ofron një gamë të plotë të veçorive të larta, si zmadhim optik i shumëfishtë, sistemi i njoftimeve Dynamic Island, dhe çipi modern A17 Pro ultra i shpejtë, i përshtatshëm për operacione grafike, duke përfshirë lojërat.
                   </p>
                   <p> <b>Përdorimi:</b> <br>
                     Perfekt për punë, shkollë, ose argëtim. Mundëson përpunim të shpejtë të detyrave dhe eksperiencë të shkëlqyer multimediale.
@@ -72,20 +66,20 @@
             </div>
             <div class="product-col">
                 <div class="feature-img">
-                    <img src="/assets/macbook-14-1.webp" id="productImg" alt="Apple MacBook Pro">
+                    <img src="/assets/Apple iPhone 15.jpeg" id="productImg" alt="Apple iPhone 15 Pro Max">
                 </div>
                 <div class="small-img-row">
                     <div class="small-img-col">
-                      <img src="/assets/macbook-14-1.webp" width="100%" class="small-img" onclick="changeImage('/assets/macbook-14-1.webp')">
+                      <img src="/assets/Apple iPhone 15.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/Apple iPhone 15.jpeg')">
                     </div>
                     <div class="small-img-col">
-                      <img src="/assets/macbook-14-2.jpg" width="100%" class="small-img" onclick="changeImage('/assets/macbook-14-2.jpg')">
+                      <img src="/assets/Apple iPhone 15 2.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/Apple iPhone 15 2.jpeg')">
                     </div>
                     <div class="small-img-col">
-                      <img src="/assets/macbook-14-3.jpg" width="100%" class="small-img" onclick="changeImage('/assets/macbook-14-3.jpg')">
+                      <img src="/assets/Apple iPhone 15 3.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/Apple iPhone 15 3.jpeg')">
                     </div>
                     <div class="small-img-col">
-                      <img src="/assets/macbook-14-4.webp" width="100%" class="small-img" onclick="changeImage('/assets/macbook-14-4.webp')">
+                      <img src="/assets/Apple iPhone 15 4.jpeg" width="100%" class="small-img" onclick="changeImage('/assets/Apple iPhone 15 4.jpeg')">
                     </div>
                 </div>
             </div>
@@ -111,7 +105,15 @@
           productImg.src = imageSrc;
         }
     </script>
-
+      <!-- This is JS code is to change Product Images-->
+      <script>
+        var productImg = document.getElementById("productImg");
+        var smallImages = document.getElementsByClassName("small-img");
+    
+        function changeImage(imageSrc) {
+          productImg.src = imageSrc;
+        }
+     </script>
     <script>
 		window.addEventListener('load', function() {
 			document.getElementById('loading').classList.add('hide');
