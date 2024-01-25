@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 | Faleminderit</title>
+    <title>404 | Faqja Nuk Egziston</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
     <!-- This is the Navbar Desktop -->
     <header>
-        <a class="logo" href="index.html"><img src="assets/favicon.png" alt="logo"></a>
+        <a class="logo" href="index.php"><img src="assets/favicon.png" alt="logo"></a>
         <nav>
             <ul class="nav__links">
                 <li><a href="shop.html">Shop</a></li>
@@ -33,9 +33,9 @@
 
 
     <div class="card-404">
-        <h1>Faleminderit</h1>
-        <p style="text-align: center;">Që na kontaktuat, ne do t'ju përgjigjemi menjëherë sapo mesazhi juaj të mbërri.</p>
-        <a href="/index.html" class="button">Kthehu në faqen kryesore</a>
+        <h1>Faqja nuk u gjet</h1>
+        <p style="text-align: center;">Na vjen keq, faqja që po kërkoni nuk ekziston.</p>
+        <a href="/index.php" class="button">Kthehu në faqen kryesore</a>
     </div>
 
     <!-- Footer Section Starts Here -->

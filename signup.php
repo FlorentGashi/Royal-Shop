@@ -18,35 +18,39 @@
             </svg>
         </div>
     </div>
-    
-    <header>
-        <a class="logo" href="index.html"><img src="assets/favicon.png" alt="logo"></a>
-        <nav>
-            <ul class="nav__links">
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <a class="cta" href="login.html">Login</a>
-        <p class="menu cta">Menu</p>
-    </header>
 
-     <!-- This is the Navbar in Mobile -->
-    <div id="mobile__menu" class="overlay">
-        <a class="close">&times;</a>
-        <div class="overlay__content">
-            <a href="shop.html">Shop</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a class="cta-mobile" href="login.html">Login</a>
-        </div>
-    </div>
+    <?php
+        include("./db/database-connection.php");
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username = $_POST["name"];  // Assuming 'name' corresponds to 'username'
+            $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+            $email = $_POST["email"];
+
+            // Default role for a registered user
+            $role = 'user';
+
+            $query = "INSERT INTO Users (username, password, email, role) VALUES ('$username', '$password', '$email', '$role')";
+            $result = $conn->query($query);
+
+            if ($result) {
+                // Registration successful
+                header("Location: login.html"); // Redirect to login page
+                exit();
+            } else {
+                echo "Error: " . $conn->error;
+            }
+        }
+    ?>
+
+    <?php 
+     include './components/header.php'
+    ?>
 
     <!-- This is The Login Form -->
     <div class="form-container">
         <h1 class="title">Regjistrohu</h1>
-        <form class="form" onsubmit="return validateForm()">
+        <form class="form" action="register.php" method="post" onsubmit="return validateForm()">
             <div class="input-group">
                 <label for="name">Sheno Emrin</label>
                 <input type="text" name="name" id="name" required>
@@ -70,21 +74,15 @@
             <button class="sign">Regjistrohu</button>
         </form>
         <p class="signup">Keni nje Llogari?
-        <a rel="noopener noreferrer" href="login.html" class="">Kyçu</a>
+        <a rel="noopener noreferrer" href="login.php" class="">Kyçu</a>
         </p>
     </div>
     <!--  Login Form End's Here -->
 
     <!-- Footer Section Starts Here -->
-    <footer class="footer">
-        <ul class="footer-menu">
-          <li class="menu__item"><a class="menu__link" href="#">Shop</a></li>
-          <li class="menu__item"><a class="menu__link" href="#">About</a></li>
-          <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
-    
-        </ul>
-        <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Royal Shop | All Rights Reserved</p>
-    </footer>
+    <?php 
+     include './components/footer.php'
+    ?>
 
     <!-- Form Validation Here -->
     <script>

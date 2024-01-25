@@ -19,35 +19,59 @@
         </div>
     </div>
     
+    <?php
+        header('Content-Type: text/html; charset=utf-8');
 
-    <header>
-        <a class="logo" href="index.html"><img src="assets/favicon.png" alt="logo"></a>
-        <nav>
-            <ul class="nav__links">
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <a class="cta" href="login.html">Login</a>
-        <p class="menu cta">Menu</p>
-    </header>
+        include("./db/database-connection.php");
 
-     <!-- This is the Navbar in Mobile -->
-    <div id="mobile__menu" class="overlay">
-        <a class="close">&times;</a>
-        <div class="overlay__content">
-            <a href="shop.html">Shop</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a class="cta-mobile" href="login.html">Login</a>
-        </div>
-    </div>
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $username = $_POST["username"];
+            $password = $_POST["password"];
+
+            // Fetch user ID and hashed password from the database based on the provided username
+            $query = "SELECT user_id, password FROM Users WHERE username = '$username'";
+            $result = $conn->query($query);
+
+            if ($result) {
+                $row = $result->fetch_assoc();
+
+                if ($row) {
+                    $user_id = $row['user_id'];
+                    $hashedPassword = $row['password'];
+
+                    // Verify the password
+                    if (password_verify($password, $hashedPassword)) {
+                        // Password is correct, perform login
+                        session_start(); // Ensure session is started
+                        $_SESSION["user_id"] = $user_id; // Set the user ID from the database
+
+                        echo "Login successful. Redirecting...";
+                        header("Location: ./admin/dashboard.php");
+                        exit();
+                    } else {
+                        // Invalid username or password
+                        echo "Invalid username or password";
+                    }
+                } else {
+                    // No user found with the provided username
+                    echo "No user found with the provided username";
+                }
+            } else {
+                // Error executing the SQL query
+                echo "Error: " . $conn->error;
+            }
+        }
+    ?>
+
+
+    <?php 
+     include './components/header.php'
+    ?>
 
     <!-- This is The Login Form -->
     <div class="form-container">
         <h1 class="title">Kyçu</h1>
-        <form class="form" onsubmit="return validateForm()">
+        <form class="form" action="login.php" method="post" onsubmit="return validateForm()">
             <div class="input-group">
                 <label for="username">Sheno Emrin</label>
                 <input type="text" name="username" id="username" required>
@@ -62,26 +86,20 @@
         </form>
         <p id="successMessage" class="success"></p>
         <p class="signup">Nuk keni ende nje Llogari?
-        <a rel="noopener noreferrer" href="signup.html" class="">Regjistrohu</a>
+        <a rel="noopener noreferrer" href="signup.php" class="">Regjistrohu</a>
         </p>
     </div>
     <!--  Login Form End's Here -->
 
     <!-- Footer Section Starts Here -->
-    <footer class="footer">
-        <ul class="footer-menu">
-          <li class="menu__item"><a class="menu__link" href="#">Shop</a></li>
-          <li class="menu__item"><a class="menu__link" href="#">About</a></li>
-          <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
-    
-        </ul>
-        <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Royal Shop | All Rights Reserved</p>
-    </footer> 
+    <?php 
+     include './components/footer.php'
+    ?>
 
 
     <!-- Form Validation Here -->
     <script>
-        let usernameRegex = /^[A-Za-z]{8,15}$/;
+        let usernameRegex = /^[A-Za-z]/;
         let passwordRegex = /^[A-Z].*\d{3}$/;
     
         function validateForm() {
@@ -115,6 +133,5 @@
 		});
 	</script>
     
-    <script type="text/javascript" src="/js/mobile.js"></script>
 </body>
 </html>

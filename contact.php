@@ -11,6 +11,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
+                
+            <?php
+            include("./db/database-connection.php");
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $name = $_POST["name"];
+                $email = $_POST["email"];
+                $subject = $_POST["subject"];
+                $message = $_POST["message"];
+
+            
+                $query = "INSERT INTO ContactFormSubmissions (name, email, subject, message) VALUES ('$name', '$email', '$subject', '$message')";
+                $result = $conn->query($query);
+
+                if ($result) {    
+                    header("Location: thankyou.php"); 
+                    exit();
+                } else {
+                    echo "Error: " . $conn->error;
+                }
+            }
+            ?>
+
+
     <!-- Here is The Loader so The Page Doesn't show up till the content is Loaded -->
     <div class="center-body" id="loading">
         <div class="loader-circle-86">
@@ -21,30 +45,9 @@
     </div>
 
         <!-- This is the Navbar Desktop -->
-        <header>
-            <a class="logo" href="index.html"><img src="assets/favicon.png" alt="logo"></a>
-            <nav>
-                <ul class="nav__links">
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-                <a class="cta" href="login.html">Login</a>
-            <p class="menu cta">Menu</p>
-        </header>
-    
-         <!-- This is the Navbar in Mobile -->
-        <div id="mobile__menu" class="overlay">
-            <a class="close">&times;</a>
-            <div class="overlay__content">
-                <a href="shop.html">Shop</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
-                <a class="cta-mobile" href="login.html">Login</a>
-                <a class="cta-mobile" href="cart.html">Cart</a>
-            </div>
-        </div>
+        <?php 
+        include './components/header.php'
+        ?>
 
         <section class="contact-us">
             <div class="row" style="align-items: center;">
@@ -75,10 +78,7 @@
                 </div>
                 <div class="contact-col">
                     <div class="contact-form-container">
-                        <form action="https://formsubmit.co/info@intrioxa.com" method="POST">
-                            <input type="text" name="_honey" style="display:none">
-                            <input type="hidden" name="_subject" value="Royal Shop Mail!">
-                            <input type="hidden" name="_next" value="https://royal.intrioxa.com/thankyou.html">
+                        <form action="contact.php" method="POST">
                             <input type="text" name="name" placeholder="Shkruaj Emrin Tend" required>
                             <input type="email" name="email" placeholder="Shkruaj Email Adresen" required>
                             <input type="text" name="subject" placeholder="Subjekti" required>
@@ -86,7 +86,7 @@
                             <button type="submit" class="submit-btn-contact">Dërgo Mesazhin</button>
                         </form>
                    </div>
-            </div>
+               </div>
             </div>
         </section>
         
@@ -95,21 +95,14 @@
         </section>
 
 
-        <footer class="footer" style="margin-top: 0;">
-            <ul class="footer-menu">
-              <li class="menu__item"><a class="menu__link" href="shop.html">Shop</a></li>
-              <li class="menu__item"><a class="menu__link" href="about.html">About</a></li>
-              <li class="menu__item"><a class="menu__link" href="contact.html">Contact</a></li>
-        
-            </ul>
-            <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Royal Shop | All Rights Reserved</p>
-        </footer>
+        <?php 
+        include './components/footer.php'
+        ?>
 
         <script>
             window.addEventListener('load', function() {
                 document.getElementById('loading').classList.add('hide');
             });
         </script>
-        <script type="text/javascript" src="/js/mobile.js"></script>
 </body>
 </html>
