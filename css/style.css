@@ -69,7 +69,9 @@
   nav {
     order: 3;
   }
-  
+  .logout-form{
+    order: 3;
+  }
   .nav__links a,
   .cta,
   .overlay__content a {

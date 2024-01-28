@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('../db/database-connection.php');
 
 // Function to get products from the database
@@ -28,10 +29,14 @@ function getProductSales($productId, $conn) {
 }
 
 // Function to update a product in the database
-function updateProduct($conn, $productId, $productName, $productCategory, $productStock, $productPrice, $productDiscount) {
-    $updateQuery = "UPDATE Products SET title=?, category=?, stock=?, price=?, discounted_price=? WHERE product_id=?";
+function updateProduct($conn, $productId, $productName, $productDescription, $productCategory, $productStock, $productPrice, $productDiscount) {
+
+    $discountValue = !empty($productDiscount) ? $productDiscount : null;
+
+    $updateQuery = "UPDATE Products SET title=?, description=?, category=?, stock=?, price=?, discounted_price=? WHERE product_id=?";
     $updateStmt = $conn->prepare($updateQuery);
-    $updateStmt->bind_param("ssdsdi", $productName, $productCategory, $productStock, $productPrice, $productDiscount, $productId);
+
+    $updateStmt->bind_param("ssssdii", $productName, $productDescription, $productCategory, $productStock, $productPrice, $discountValue, $productId);
 
     if (!$updateStmt->execute()) {
         die("Error: " . $updateStmt->error);
@@ -60,12 +65,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (isset($_POST['update_product'])) {
         $productId = $_POST['editProductId'];
         $productName = $_POST['editProductName'];
+        $productDescription = $_POST['editProductDescription'];
         $productCategory = $_POST['editProductCategory'];
         $productStock = $_POST['editProductStock'];
         $productPrice = $_POST['editProductPrice'];
         $productDiscount = $_POST['editProductDiscount']; 
 
-        updateProduct($conn, $productId, $productName, $productCategory, $productStock, $productPrice, $productDiscount);
+        updateProduct($conn, $productId, $productName, $productDescription, $productCategory, $productStock, $productPrice, $productDiscount);
 
         header("Location: products.php");
         exit();
@@ -82,36 +88,16 @@ $products = getProducts($conn);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/dashboard.css">
     <title>Products Dashboard</title>
+    <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
 <!-- Navbar Desktop -->
-<header>
-    <a class="logo" href="index.php"><img src="https://royal.intrioxa.com/assets/favicon.png" alt="logo"/></a>
-    <nav>
-        <ul class="nav__links">
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-    <a class="cta" href="login.html">Login</a>
-    <p class="menu cta">Menu</p>
-</header>
-
-<!-- Navbar in Mobile -->
-<div id="mobile__menu" class="overlay">
-    <a class="close">&times;</a>
-    <div class="overlay__content">
-        <a href="shop.html">Shop</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a class="cta-mobile" href="login.html">Login</a>
-        <a class="cta-mobile" href="cart.html">Cart</a>
-    </div>
-</div>
+<?php
+include('../components/admin-header.php');
+?>
 
 <!-- Admin Dashboard Sidebar and Content -->
 <div class="admin-container">
@@ -156,7 +142,7 @@ $products = getProducts($conn);
                         <td><?= $product['category'] ?></td>
                         <td><?= getProductSales($product['product_id'], $conn) ?></td>
                         <td><?= $product['stock'] ?></td>
-                        <td><?= $product['price'] ?></td>
+                        <td>$<?= $product['price'] ?></td>
                         <td><?= $product['discounted_price'] !== null ? $product['discounted_price'] : 'No Discount' ?></td>
                         <td>
                             <button class="crud-btn edit-btn" data-product-info="<?= htmlentities(json_encode($product), ENT_QUOTES, 'UTF-8') ?>">Edit</button>
@@ -177,6 +163,8 @@ $products = getProducts($conn);
         <input type="text" id="editProductId" value="" disabled/>
         <label for="editProductName">Product Name:</label>
         <input type="text" id="editProductName" value="" />
+        <label for="editProductDescription">Description:</label>
+        <textarea id="editProductDescription" name="editProductDescription" required></textarea>
         <label for="editProductCategory">Category:</label>
         <input type="text" id="editProductCategory" value="" />
         <label for="editProductStock">Stock:</label>
@@ -223,7 +211,9 @@ $products = getProducts($conn);
     function openEditPopup(productData) {
         document.getElementById("editProductId").value = productData.product_id;
         document.getElementById("editProductName").value = productData.title || "";
-        document.getElementById("editProductCategory").value = productData.category || "";
+        document.getElementById("editProductDescription").value = productData.description || "";
+        // document.getElementById("editProductCategory").value = productData.category || "";
+        document.getElementById("editProductCategory").value = productData.category !== undefined && productData.category !== null ? productData.category : "";
         document.getElementById("editProductStock").value = productData.stock || "";
         document.getElementById("editProductPrice").value = productData.price || "";
         document.getElementById("editProductDiscount").value = productData.discounted_price || "";
@@ -239,6 +229,7 @@ $products = getProducts($conn);
         var updatedData = {
             productId: document.getElementById("editProductId").value,
             name: document.getElementById("editProductName").value,
+            description: document.getElementById("editProductDescription").value,
             category: document.getElementById("editProductCategory").value,
             stock: document.getElementById("editProductStock").value,
             price: document.getElementById("editProductPrice").value,
@@ -265,6 +256,11 @@ $products = getProducts($conn);
         inputEditProductName.name = "editProductName";
         inputEditProductName.value = updatedData.name;
 
+        var inputEditProductDescription = document.createElement("input");
+        inputEditProductDescription.type = "hidden";
+        inputEditProductDescription.name = "editProductDescription";
+        inputEditProductDescription.value = updatedData.description;
+
         var inputEditProductCategory = document.createElement("input");
         inputEditProductCategory.type = "hidden";
         inputEditProductCategory.name = "editProductCategory";
@@ -289,6 +285,7 @@ $products = getProducts($conn);
         form.appendChild(inputUpdateProduct);
         form.appendChild(inputEditProductId);
         form.appendChild(inputEditProductName);
+        form.appendChild(inputEditProductDescription);
         form.appendChild(inputEditProductCategory);
         form.appendChild(inputEditProductStock);
         form.appendChild(inputEditProductPrice);

@@ -60,6 +60,7 @@
   }
   
   .cta {
+    margin: 0;
     order: 3;
     margin-left: 20px;
     padding: 9px 25px;
@@ -355,7 +356,7 @@
 
 /* Product Page Styles */
 
-form {
+form:not(.logout-form) {
   max-width: 600px;
   margin: 2em auto;
   background-color: #fff;
@@ -363,7 +364,9 @@ form {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+.logout-form{
+  order: 3;
+}
 label {
   display: block;
   margin-bottom: 0.5em;

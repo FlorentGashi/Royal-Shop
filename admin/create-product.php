@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include('../db/database-connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -8,16 +10,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $productPrice = $_POST['productPrice'];
     $productDescription = $_POST['productDescription'];
 
-    // Image upload directory is this path 
-    $targetDir = "../uploads/";
-    $targetFile = $targetDir . basename($_FILES["productImage"]["name"]);
-    move_uploaded_file($_FILES["productImage"]["tmp_name"], $targetFile);
+    $rootDir = dirname(__DIR__);
+    $uploadsDir = $rootDir . "/uploads/";
+    // Initialize variables for image URLs
+    $image_urls = [];
 
-    $insertQuery = "INSERT INTO Products (title, category, stock, price, description, image_url) 
-                    VALUES (?, ?, ?, ?, ?, ?)";
-    
+    // Loop through each image input
+    for ($i = 1; $i <= 4; $i++) {
+        $targetFile = $uploadsDir . basename($_FILES["productImage$i"]["name"]);
+
+        // Check for file upload errors
+        if ($_FILES["productImage$i"]["error"] > 0) {
+            echo "File $i upload error: " . $_FILES["productImage$i"]["error"];
+            exit();
+        }
+
+        // Move uploaded file to the uploads directory
+        if (move_uploaded_file($_FILES["productImage$i"]["tmp_name"], $targetFile)) {
+            echo "File $i successfully moved to the uploads directory.";
+        } else {
+            echo "File $i not moved to the uploads directory.";
+            exit();
+        }
+
+        // Check if file exists in the uploads directory
+        if (file_exists($targetFile)) {
+            echo "File $i exists in the uploads directory.";
+        } else {
+            echo "File $i does not exist in the uploads directory.";
+            exit();
+        }
+
+        // Assign the image URL to the array
+        $image_urls[] = $targetFile;
+    }
+
+    $insertQuery = "INSERT INTO Products (title, category, stock, price, description, image_url, image_url_2, image_url_3, image_url_4) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
     $insertStmt = $conn->prepare($insertQuery);
-    $insertStmt->bind_param("ssdsss", $productName, $productCategory, $productStock, $productPrice, $productDescription, $targetFile);
+    $insertStmt->bind_param("ssdssssss", $productName, $productCategory, $productStock, $productPrice, $productDescription, ...$image_urls);
 
     if ($insertStmt->execute()) {
         echo "Product added successfully.";
@@ -31,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,37 +71,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="../css/dashboard.css">
     <title>Products Dashboard</title>
+    <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-<!-- Navbar Desktop -->
-<header>
-    <a class="logo" href="index.php"><img src="https://royal.intrioxa.com/assets/favicon.png" alt="logo"/>
-    </a>
-    <nav>
-        <ul class="nav__links">
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-    <a class="cta" href="login.html">Login</a>
-    <p class="menu cta">Menu</p>
-</header>
-
-<!-- Navbar in Mobile -->
-<div id="mobile__menu" class="overlay">
-    <a class="close">&times;</a>
-    <div class="overlay__content">
-        <a href="shop.html">Shop</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a class="cta-mobile" href="login.html">Login</a>
-        <a class="cta-mobile" href="cart.html">Cart</a>
-    </div>
-</div>
+<?php
+include('../components/admin-header.php');
+?>
 
 <!-- Admin Dashboard Sidebar and Content -->
 <div class="admin-container">
@@ -99,8 +110,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="productDescription">Description:</label>
             <textarea id="productDescription" name="productDescription" required></textarea>
 
-            <label for="productImage">Image:</label>
-            <input type="file" id="productImage" name="productImage" accept="image/*" required/>
+            <label for="productImage1">Image 1:</label>
+            <input type="file" id="productImage1" name="productImage1" accept="image/*" required/>
+
+            <label for="productImage2">Image 2:</label>
+            <input type="file" id="productImage2" name="productImage2" accept="image/*" required/>
+
+            <label for="productImage3">Image 3:</label>
+            <input type="file" id="productImage3" name="productImage3" accept="image/*" required/>
+
+            <label for="productImage4">Image 4:</label>
+            <input type="file" id="productImage4" name="productImage4" accept="image/*" required/>
 
             <button type="submit" class="add-product-btn">Create Product</button>
         </form>

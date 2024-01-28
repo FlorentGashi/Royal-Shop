@@ -27,41 +27,36 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $username = $_POST["username"];
             $password = $_POST["password"];
-
-            // Fetch user ID and hashed password from the database based on the provided username
-            $query = "SELECT user_id, password FROM Users WHERE username = '$username'";
+        
+            $query = "SELECT user_id, password, role FROM Users WHERE username = '$username'";
             $result = $conn->query($query);
-
+        
             if ($result) {
                 $row = $result->fetch_assoc();
-
+        
                 if ($row) {
                     $user_id = $row['user_id'];
                     $hashedPassword = $row['password'];
-
-                    // Verify the password
+                    $role = $row['role'];
+        
                     if (password_verify($password, $hashedPassword)) {
-                        // Password is correct, perform login
-                        session_start(); // Ensure session is started
-                        $_SESSION["user_id"] = $user_id; // Set the user ID from the database
-
-                        echo "Login successful. Redirecting...";
-                        header("Location: ./admin/dashboard.php");
-                        exit();
-                    } else {
-                        // Invalid username or password
-                        echo "Invalid username or password";
-                    }
-                } else {
-                    // No user found with the provided username
-                    echo "No user found with the provided username";
-                }
+                        session_start();
+                        $_SESSION["user_id"] = $user_id;
+        
+                        if ($role == 'admin') {
+                            header("Location: ./admin/dashboard.php");
+                            exit();
+                        } elseif ($role == 'user') {
+                            header("Location: ./user/dashboard.php");
+                            exit();
+                        } 
+                    } 
+                } 
             } else {
-                // Error executing the SQL query
                 echo "Error: " . $conn->error;
             }
         }
-    ?>
+        ?>
 
 
     <?php 

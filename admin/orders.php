@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('../db/database-connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -49,43 +50,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Admin Orders</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../css/dashboard.css">
-  </head>
-  <body>
+    <link rel="shortcut icon" href="../assets/favicon.png" type="image/x-icon">
+</head>
+<body>
 
-  <header>
-    <a class="logo" href="index.php">
-        <img src="../assets/favicon.png" alt="logo"/>
-    </a>
-    <nav>
-        <ul class="nav__links">
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-    <a class="cta" href="login.html">Login</a>
-    <p class="menu cta">Menu</p>
-</header>
-
-<div id="mobile__menu" class="overlay">
-    <a class="close">&times;</a>
-    <div class="overlay__content">
-        <a href="shop.html">Shop</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a class="cta-mobile" href="login.html">Login</a>
-        <a class="cta-mobile" href="cart.html">Cart</a>
-    </div>
-</div>
+    <?php
+    include('../components/admin-header.php');
+    ?>
 
     <div class="admin-container">
       <aside class="sidebar">
