@@ -1,3 +1,19 @@
+<?php
+include('./db/database-connection.php');
+
+function getProducts($conn) {
+    $query = "SELECT * FROM Products";
+    $result = mysqli_query($conn, $query);
+    $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    return $products;
+}
+try {
+} catch (Exception $e) {
+    echo 'Caught exception: ', $e->getMessage(), "\n";
+}
+$products = getProducts($conn);
+?>
+
 <!DOCTYPE html>
 <html lang="sq">
 <head>
@@ -10,147 +26,43 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-     <!-- Here is The Loader so The Page Doesn't show up till the content is Loaded -->
-     <div class="center-body" id="loading">
-        <div class="loader-circle-86">
-            <svg version="1.1" x="0" y="0" viewbox="-10 -10 120 120" enable-background="new 0 0 200 200" xml:space="preserve">
-           <path class="circle" d="M0,50 A50,50,0 1 1 100,50 A50,50,0 1 1 0,50"/>
-            </svg>
-        </div>
-    </div>
-
+    <?php 
+        include './components/loader.php'
+     ?>
      <!-- This is the Navbar Desktop -->
      <?php 
         include './components/header.php'
      ?>
 
-       <div class="products-section">
-        <h2 class="section-title">Produktet Tona</h2>
+     <!-- Product Section Start's Here -->
+     <div class="products-section">
+      <h2 class="section-title">Produktet Tona</h2>
         <div class="product-container">
-
-            <div class="product">
-                <img src="./assets/Karrige SENSE7 Spellcaster.png" alt="Karrige SENSE7 Spellcaster">
-                <div class="product-content">
-                    <h3 class="product-title">Karrige SENSE7 Spellcaster</h3>
-                    <p class="product-price">169.99€</p>
-                    <p class="product-discount">Nga: 259.99€</p>
-                    <div class="product-actions">
-                        <a href="cart.html" class="action-button">Shto në Shport</a>
-                        <a href="/karrige-tavolina/karrige-sense7-spellcaster.html" class="action-button">Shiko</a>
+            <?php foreach ($products as $product): ?>
+                <div class="product">
+                <?php $relativePath = "uploads/" . basename($product['image_url']); ?>
+                <img src="<?php echo $relativePath; ?>" alt="<?php echo $product['title']; ?>">
+                    <div class="product-content">
+                        <h3 class="product-title"><?php echo $product['title']; ?></h3>
+                        <p class="product-price"><?php echo $product['price'];?>€</p>
+                        <?php if ($product['discounted_price']): ?>
+                            <p class="product-discount">Nga: <?php echo $product['discounted_price']; ?>€</p>
+                        <?php endif; ?>
+                        <div class="product-actions">
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <a href="wishlist.php?product_id=<?php echo $product['product_id']; ?>" class="action-button">Wishlist</a>
+                        <?php endif; ?>
+                        <a href="product-details.php?product_id=<?php echo $product['product_id']; ?>" class="action-button">Shiko</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="product">
-                <img src="./assets/Apple iPhone 15.jpeg" alt="Apple iPhone 15 Pro Max">
-                <div class="product-content">
-                    <h3 class="product-title">Apple iPhone 15 Pro Max </h3>
-                    <p class="product-price">1295€</p>
-                    <p class="product-discount">Nga:1400€</p>
-                    <div class="product-actions">
-                        <a href="cart.html" class="action-button">Shto në Shport</a>
-                        <a href="/kompjuter-laptop-monitor/apple iphone 15 pro max.html" class="action-button">Shiko</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="product">
-                <img src="./assets/macbook-14-1.webp" alt="Apple Macbook Pro 14">
-                <div class="product-content">
-                    <h3 class="product-title">Apple Macbook Pro 14"</h3>
-                    <p class="product-price">1400€</p>
-                    <p class="product-discount">Nga: 1750€</p>
-                    <div class="product-actions">
-                        <a href="cart.html" class="action-button">Shto në Shport</a>
-                        <a href="/kompjuter-laptop-monitor/macbook-pro-14.html" class="action-button">Shiko</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product">
-                <img src="./assets/Monitor AOC.jpeg" alt="Monitor AOC 25">
-                <div class="product-content">
-                    <h3 class="product-title">Monitor AOC 25"</h3>
-                    <p class="product-price">465€</p>
-                    <p class="product-discount">Nga: 650€</p>
-                    <div class="product-actions">
-                        <a href="cart.html" class="action-button">Shto në Shport</a>
-                        <a href="/kompjuter-laptop-monitor/monitor aoc 25.html" class="action-button">Shiko</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product">
-                <img src="./assets/Monitor AOC 24B2XH.jpeg" alt="Monitor AOC 24B2XH">
-                <div class="product-content">
-                    <h3 class="product-title">Monitor AOC 24B2XH - 23,8'' LED"</h3>
-                    <p class="product-price">190€</p>
-                    <p class="product-discount">Nga: 270€</p>
-                    <div class="product-actions">
-                        <a href="cart.html" class="action-button">Shto në Shport</a>
-                        <a href="/kompjuter-laptop-monitor/monitor aoc.html" class="action-button">Shiko</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product">
-                <img src="./assets/USB-C Kingston DataTraveler 70.jpeg" alt="USB-C Kingston DataTraveler 70">
-                <div class="product-content">
-                    <h3 class="product-title">USB-C Kingston DataTraveler 70 - 64GB</h3>
-                    <p class="product-price">38.99€</p>
-                    <p class="product-discount">Nga: 55€</p>
-                    <div class="product-actions">
-                        <a href="cart.html" class="action-button">Shto në Shport</a>
-                        <a href="/aksesore/usb-c-kingston.html" class="action-button">Shiko</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product">
-                <img src="./assets/Maus Zowie by BenQ.jpeg" alt="Maus Zowie by BenQ">
-                <div class="product-content">
-                    <h3 class="product-title">Maus Zowie by BenQ EC1-B Divina</h3>
-                    <p class="product-price">42.99€</p>
-                    <p class="product-discount">Nga: 69.99€</p>
-                    <div class="product-actions">
-                        <a href="cart.html" class="action-button">Shto në Shport</a>
-                        <a href="/aksesore/maus-zowie.html" class="action-button">Shiko</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product">
-                <img src="./assets/Apple Watch Ultra 2 Cellular.jpeg" alt="Apple Watch Ultra 2">
-                <div class="product-content">
-                    <h3 class="product-title">Apple Watch Ultra 2 Cellular, 49mm Titanium Case</h3>
-                    <p class="product-price">950€</p>
-                    <p class="product-discount">Nga: 1200€</p>
-                    <div class="product-actions">
-                        <a href="cart.html" class="action-button">Shto në Shport</a>
-                        <a href="/aksesore/apple-watch-ultra-2.html" class="action-button">Shiko</a>
-                    </div>
-                </div>
-            </div>
-
+            <?php endforeach; ?>
         </div>
     </div>
     <!-- Product Section Ends Here -->
 
-    <footer class="footer">
-        <ul class="footer-menu">
-          <li class="menu__item"><a class="menu__link" href="shop.html">Shop</a></li>
-          <li class="menu__item"><a class="menu__link" href="about.html">About</a></li>
-          <li class="menu__item"><a class="menu__link" href="contact.html">Contact</a></li>
-    
-        </ul>
-        <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Royal Shop | All Rights Reserved</p>
-    </footer>
-
-    <script>
-        window.addEventListener('load', function() {
-            document.getElementById('loading').classList.add('hide');
-        });
-    </script>
-    <script type="text/javascript" src="/js/mobile.js"></script>
+    <?php 
+     include './components/footer.php'
+    ?>
 </body>
 </html>

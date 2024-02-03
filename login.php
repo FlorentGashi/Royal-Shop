@@ -10,14 +10,10 @@
     <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-    <!-- Here is The Loader so The Page Doesn't show up till the content is Loaded -->
-    <div class="center-body" id="loading">
-        <div class="loader-circle-86">
-            <svg version="1.1" x="0" y="0" viewbox="-10 -10 120 120" enable-background="new 0 0 200 200" xml:space="preserve">
-           <path class="circle" d="M0,50 A50,50,0 1 1 100,50 A50,50,0 1 1 0,50"/>
-            </svg>
-        </div>
-    </div>
+    <?php 
+        include './components/loader.php';
+        include './components/header.php';
+    ?>
     
     <?php
         header('Content-Type: text/html; charset=utf-8');
@@ -58,11 +54,6 @@
         }
         ?>
 
-
-    <?php 
-     include './components/header.php'
-    ?>
-
     <!-- This is The Login Form -->
     <div class="form-container">
         <h1 class="title">Kyçu</h1>
@@ -90,43 +81,6 @@
     <?php 
      include './components/footer.php'
     ?>
-
-
-    <!-- Form Validation Here -->
-    <script>
-        let usernameRegex = /^[A-Za-z]/;
-        let passwordRegex = /^[A-Z].*\d{3}$/;
-    
-        function validateForm() {
-            let usernameInput = document.getElementById('username');
-            let usernameError = document.getElementById('usernameError');
-            let passwordInput = document.getElementById('password');
-            let passwordError = document.getElementById('passwordError');
-            let successMessage = document.getElementById('successMessage');
-    
-            usernameError.innerText = '';
-            passwordError.innerText = '';
-    
-            if (!usernameRegex.test(usernameInput.value)) {
-                usernameError.innerText = 'Emri i Përdoruesit duhet të jetë nga 8 deri në 15 karaktere dhe të përmbajë vetëm shkronja.';
-                return false;
-            }
-    
-            if (!passwordRegex.test(passwordInput.value)) {
-                passwordError.innerText = 'Fjalëkalimi duhet të fillojë me shkronjë të madhe dhe të përmbajë të paktën 3 numra.';
-                return false;
-            }
-    
-            successMessage.innerText = 'Forma u plotësua me sukses!';
-            return true;
-        }
-    </script>
-
-    <script>
-		window.addEventListener('load', function() {
-			document.getElementById('loading').classList.add('hide');
-		});
-	</script>
     
 </body>
 </html>

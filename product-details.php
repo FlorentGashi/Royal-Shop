@@ -31,16 +31,11 @@ if (isset($_GET['product_id'])) {
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body style="background-color: #f4f4f4;">
-     <!-- Here is The Loader so The Page Doesn't show up till the content is Loaded -->
-     <div class="center-body" id="loading">
-        <div class="loader-circle-86">
-            <svg version="1.1" x="0" y="0" viewbox="-10 -10 120 120" enable-background="new 0 0 200 200" xml:space="preserve">
-           <path class="circle" d="M0,50 A50,50,0 1 1 100,50 A50,50,0 1 1 0,50"/>
-            </svg>
-        </div>
-    </div>
 
-    <!-- This is the Navbar -->
+    <?php 
+        include './components/loader.php'
+    ?>
+
     <?php 
     include './components/header.php'
     ?>
@@ -54,8 +49,14 @@ if (isset($_GET['product_id'])) {
                 <?php if ($discountedPrice): ?>
                     <p><b>Discounted Price:</b> <?= $discountedPrice ?>€</p>
                 <?php endif; ?>
-                <br />
-                <a href="cart.html" class="accept-btn">Shto në Shport</a>
+
+                <form method="post" action="cart.php">
+                    <input type="hidden" name="product_id" value="<?= $product_id ?>">
+                    <input type="hidden" name="title" value="<?= $pageTitle ?>">
+                    <input type="hidden" name="price" value="<?= $price ?>">
+                    <input type="hidden" name="image_url" value="<?= $imageURL ?>">
+                    <button type="submit" class="accept-btn" name="add_to_cart">Shto në Shport</button>
+                </form>
             </div>
             <div class="product-col">
                 <div class="feature-img">
@@ -74,10 +75,9 @@ if (isset($_GET['product_id'])) {
                         $product['image_url_4']
                     ];
 
-                    // Loop through small image URLs and generate small image elements
                     foreach ($smallImageUrls as $index => $smallImageUrl) {
-                        $encodedSmallFilename = isset($smallImageUrl) ? rawurlencode(basename($smallImageUrl)) : '';
-                        $encodedSmallPath = "uploads/" . $encodedSmallFilename;
+                        $encodedSmallFilename = isset($smallImageUrl) ? rawurlencode(basename($smallImageUrl)) : ''; 
+                        $encodedSmallPath = "uploads/" . $encodedSmallFilename; 
                     ?>
                         <div class="small-img-col">
                             <img src="<?= $encodedSmallPath ?>" width="100%" class="small-img" onclick="changeImage('<?= $encodedSmallPath ?>')">
@@ -86,21 +86,14 @@ if (isset($_GET['product_id'])) {
                     }
                     ?>
                 </div>
-
             </div>
         </div>
     </section>
 
     <!-- Footer Section Starts Here -->
-    <footer class="footer">
-        <ul class="footer-menu">
-          <li class="menu__item"><a class="menu__link" href="./shop.html">Shop</a></li>
-          <li class="menu__item"><a class="menu__link" href="./about.html">About</a></li>
-          <li class="menu__item"><a class="menu__link" href="./contact.html">Contact</a></li>
-    
-        </ul>
-        <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Royal Shop | All Rights Reserved</p>
-    </footer>
+    <?php 
+        include './components/footer.php'
+    ?>
     <!-- This is JS code is to change Product Images-->
     <script>
         var productImg = document.getElementById("productImg");
@@ -110,12 +103,5 @@ if (isset($_GET['product_id'])) {
           productImg.src = imageSrc;
         }
     </script>
-
-    <script>
-		window.addEventListener('load', function() {
-			document.getElementById('loading').classList.add('hide');
-		});
-	</script>
-    <script type="text/javascript" src="./js/mobile.js"></script>
 </body>
 </html>

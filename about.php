@@ -1,3 +1,28 @@
+<?php
+include('./db/database-connection.php');
+function getCount($conn, $table)
+{
+    $query = "SELECT COUNT(*) as count FROM $table";
+    $result = $conn->query($query);
+
+    if ($result === false) {
+        echo "Error: " . $conn->error; 
+        return 0;
+    }
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['count'];
+    } else {
+        return 0;
+    }
+}
+
+$totalUsers = getCount($conn, "Users");
+$totalProducts = getCount($conn, "Products");
+$totalMessages = getCount($conn, "ContactFormSubmissions");
+$totalOrders = getCount($conn, "Orders");
+?>
 <!DOCTYPE html>
 <html lang="sq">
 <head>
@@ -10,17 +35,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body style="background-color: #f4f4f4;">
-    <!-- Here is The Loader so The Page Doesn't show up till the content is Loaded -->
-    <div class="center-body" id="loading">
-        <div class="loader-circle-86">
-            <svg version="1.1" x="0" y="0" viewbox="-10 -10 120 120" enable-background="new 0 0 200 200" xml:space="preserve">
-           <path class="circle" d="M0,50 A50,50,0 1 1 100,50 A50,50,0 1 1 0,50"/>
-            </svg>
-        </div>
-    </div>
-
     <?php 
-     include './components/header.php'
+        include './components/loader.php';
+        include './components/header.php';
     ?>
 
         <section class="about-us">
@@ -65,37 +82,22 @@
                           </tr>
                           <tr>
                               <td>Numri i Produktëve:</td>
-                              <td>670+</td>
+                              <td><?= $totalProducts ?></td>
                           </tr>
                           <tr>
-                              <td>Klientët e Lumtur:</td>
-                              <td>2500+</td>
+                              <td>Porosit e Realizuara:</td>
+                              <td><?= $totalOrders ?></td>
                           </tr>
                           <tr>
-                              <td>Cilesia e produkteve</td>
-                              <td>Jemi te paret ne rajon per nga Cilesia 
+                              <td>Klientë të Regjistruar Deri Tani:</td>
+                              <td><?= $totalUsers ?></td>
                           </tr>
                       </table>
             </section>
 
-        <!-- Call To Action Start's Here -->
-        <section class="call-to-action">
-            <div class="cta-content">
-                <h2 class="cta-title">Zbulo ofertat tona ekskluzive!</h2>
-                <p class="cta-description">Blej produkte teknologjike me çmime të neveritshme. Kthehu në botën e teknologjisë sot.</p>
-                <a href="shop.html" class="cta-button">Eksploro Tani</a>
-            </div>
-        </section>
-        <!-- Call to Action End's Here -->
-
         <?php 
-         include './components/footer.php'
+         include './components/cta.php';
+         include './components/footer.php';
         ?>
-
-        <script>
-            window.addEventListener('load', function() {
-                document.getElementById('loading').classList.add('hide');
-            });
-        </script>
 </body>
 </html>

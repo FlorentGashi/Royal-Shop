@@ -7,10 +7,7 @@ function getProducts($conn) {
     $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $products;
 }
-try {
-} catch (Exception $e) {
-    echo 'Caught exception: ', $e->getMessage(), "\n";
-}
+
 $products = getProducts($conn);
 ?>
 <!DOCTYPE html>
@@ -25,21 +22,11 @@ $products = getProducts($conn);
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-     <!-- Here is The Loader so The Page Doesn't show up till the content is Loaded -->
-    <div class="center-body" id="loading">
-        <div class="loader-circle-86">
-            <svg version="1.1" x="0" y="0" viewbox="-10 -10 120 120" enable-background="new 0 0 200 200" xml:space="preserve">
-           <path class="circle" d="M0,50 A50,50,0 1 1 100,50 A50,50,0 1 1 0,50"/>
-            </svg>
-        </div>
-    </div>
-    
-    <!-- This is the Navbar Desktop -->
-   <?php 
-    include './components/header.php'
-   ?>
+    <?php 
+        include './components/loader.php';
+        include './components/header.php';
+    ?>
 
-   
     <!-- Slideshow Begins Here -->
     <div class="slideshow-container">
         <div class="slide">
@@ -77,8 +64,10 @@ $products = getProducts($conn);
                             <p class="product-discount">Nga: <?php echo $product['discounted_price']; ?>€</p>
                         <?php endif; ?>
                         <div class="product-actions">
-                            <a href="cart.html" class="action-button">Shto në Shport</a>
-                            <a href="product-details.php?product_id=<?php echo $product['product_id']; ?>" class="action-button">Shiko</a>
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <a href="wishlist.php?product_id=<?php echo $product['product_id']; ?>" class="action-button">Wishlist</a>
+                        <?php endif; ?>
+                        <a href="product-details.php?product_id=<?php echo $product['product_id']; ?>" class="action-button">Shiko</a>
                         </div>
                     </div>
                 </div>
@@ -110,19 +99,9 @@ $products = getProducts($conn);
     </section>
     <!-- Services End -->
 
-    <!-- Call To Action Start's Here -->
-    <section class="call-to-action">
-        <div class="cta-content">
-            <h2 class="cta-title">Zbulo ofertat tona ekskluzive!</h2>
-            <p class="cta-description">Blej produkte teknologjike me çmime të neveritshme. Kthehu në botën e teknologjisë sot.</p>
-            <a href="shop.html" class="cta-button">Eksploro Tani</a>
-        </div>
-    </section>
-    <!-- Call to Action End's Here -->
-
-
     <?php 
-     include './components/footer.php'
+         include './components/cta.php';
+         include './components/footer.php';
     ?>
 
     <script>
@@ -143,12 +122,5 @@ $products = getProducts($conn);
       
         showSlides();
     </script>
-    
-    <script>
-		window.addEventListener('load', function() {
-			document.getElementById('loading').classList.add('hide');
-		});
-	</script>
-
 </body>
 </html>
