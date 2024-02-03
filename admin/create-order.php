@@ -59,6 +59,7 @@ include('../components/admin-header.php');
             <li><a href="products.php">Products</a></li>
             <li><a href="orders.php" class="active">Orders</a></li>
             <li><a href="messages.php">Messages</a></li>
+            <li><a href="logs.php">Logs</a></li>
         </ul>
     </aside>
 

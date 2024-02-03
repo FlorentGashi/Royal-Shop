@@ -357,13 +357,12 @@
 
 @media screen and (max-width: 767px) {
   .product {
-    width: calc(50% - 20px); /* Show 2 products in a row with some gap in between */
+    width: calc(50% - 20px); 
   }
   .action-button{
-    font-size: 10px;
+    font-size: 14px;
     margin: 0;
     width: 45%;
-    padding: 10px;
   }
 }
 

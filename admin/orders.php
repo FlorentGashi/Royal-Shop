@@ -71,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <li><a href="products.php">Products</a></li>
           <li><a href="orders.php" class="active">Orders</a></li>
           <li><a href="messages.php">Messages</a></li>
+          <li><a href="logs.php">Logs</a></li>
         </ul>
       </aside>
 
