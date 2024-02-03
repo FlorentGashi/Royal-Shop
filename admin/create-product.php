@@ -40,8 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "File $i does not exist in the uploads directory.";
             exit();
         }
-
-        // Assign the image URL to the array
+        
         $image_urls[] = $targetFile;
     }
 
