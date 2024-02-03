@@ -1,7 +1,7 @@
 # Royal-Shop
 
 ## Domain Link:
-[https://royal.intrioxa.com/](https://royal.intrioxa.com/)
+[https://chillzy.devtest-demo.ch/](https://chillzy.devtest-demo.ch/)
 
 ## Github Link:
 [https://github.com/FlorentGashi/Royal-Shop](https://github.com/FlorentGashi/Royal-Shop)
