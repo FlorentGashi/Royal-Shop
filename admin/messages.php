@@ -26,6 +26,7 @@ include('../components/admin-header.php');
             <li><a href="orders.php">Orders</a></li>
             <li><a href="messages.php" class="active">Messages</a></li>
             <li><a href="logs.php">Logs</a></li>
+            <li><a href="users.php">Users</a></li>
         </ul>
     </aside>
 

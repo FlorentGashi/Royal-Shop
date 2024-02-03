@@ -72,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <li><a href="orders.php" class="active">Orders</a></li>
           <li><a href="messages.php">Messages</a></li>
           <li><a href="logs.php">Logs</a></li>
+          <li><a href="users.php">Users</a></li>
         </ul>
       </aside>
 
